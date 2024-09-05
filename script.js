@@ -1,5 +1,6 @@
 function appendToDisplay(value) {
-  document.getElementById('display').value += value;
+  const display = document.getElementById('display');
+  display.value += value;
 }
 
 function clearDisplay() {
@@ -7,20 +8,19 @@ function clearDisplay() {
 }
 
 function backspace() {
-  var currentValue = document.getElementById('display').value;
-  document.getElementById('display').value = currentValue.slice(0, -1);
+  const display = document.getElementById('display');
+  display.value = display.value.slice(0, -1);
 }
 
 function calculate() {
+  const display = document.getElementById('display');
   try {
-      var result = eval(document.getElementById('display').value);
-      document.getElementById('display').value = result;
-  } catch (error) {
-      document.getElementById('display').value = 'Error';
+      display.value = eval(display.value) || '';
+  } catch {
+      display.value = 'Error';
   }
 }
 
-// Add event listener for Enter key press
 document.getElementById('display').addEventListener('keyup', function(event) {
   if (event.key === 'Enter') {
       calculate();
